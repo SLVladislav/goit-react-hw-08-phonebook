@@ -3,10 +3,10 @@ import Filter from './Filter';
 import ContactList from './Contacts/ContactList';
 import { Container, Title, Header, Subtitle } from './App.styled';
 import { useDispatch, useSelector } from 'react-redux';
-import { getContacts, getFilter } from 'redux/selector';
+import { getContacts, getFilter } from 'redux/contactSlice/selector';
 import { filterContacts } from 'redux/Filter/filterSlice';
 import { useEffect } from 'react';
-import { fetchContacts } from 'redux/operations';
+import { fetchContacts } from 'redux/contactSlice/operations';
 
 export default function App() {
   const filterState = useSelector(getFilter);

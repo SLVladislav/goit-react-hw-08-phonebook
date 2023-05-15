@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import Contact from '../Contact/Contact';
 import { Item } from './ContactList.styled';
-import { deleteContacts } from 'redux/operations';
+import { deleteContacts } from 'redux/contactSlice/operations';
 
 const ContactList = ({ contacts, visibleContacts }) => {
   return contacts ? (
