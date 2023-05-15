@@ -1,9 +1,9 @@
-import { List, Item, Link } from './Navigations.styled';
+import { List, Item, Link } from './Naviagations.styled';
 import { useSelector } from 'react-redux';
-import { getIsLoggedIn } from 'redux/auth/auth-selecors';
+import { getisLoggedInStatus } from 'redux/auth/auth-selector';
 
 function Navigations() {
-  const isLoggedIn = useSelector(state => getIsLoggedIn(state));
+  const isLoggedIn = useSelector(getisLoggedInStatus);
 
   return (
     <List>

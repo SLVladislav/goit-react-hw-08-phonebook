@@ -1,12 +1,12 @@
 import styled from '@emotion/styled';
 
-export const Container = styled.div`
+export const Conteiner = styled.div`
   width: 768px;
   margin: 0 auto;
   padding: 0 10px 100px 10px;
 `;
 
-export const Header = styled.h1`
+export const H1 = styled.h1`
   font-size: 36px;
   text-transform: uppercase;
   font-weight: 900;

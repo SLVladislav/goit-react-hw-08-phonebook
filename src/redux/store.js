@@ -11,6 +11,7 @@ import {
 import { persistedReducer } from './auth/auth-slice';
 import { contactsReducer } from './contactSlice/contactsSlice';
 import { filterReducer } from './Filter/filterSlice';
+import { handleAddContactFulfilled } from 'ToastAction/ToastAction';
 
 export const store = configureStore({
   reducer: {
@@ -23,7 +24,7 @@ export const store = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }),
+    }).concat(handleAddContactFulfilled),
 });
 
 export const persistor = persistStore(store);

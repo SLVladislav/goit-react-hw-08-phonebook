@@ -1,7 +1,12 @@
-import { useDispatch, useSelector } from "react-redux";
-import { filterContacts } from "redux/Filter/filterSlice";
-import { fetchContacts } from "redux/contactSlice/operations";
-import { getContacts, getFilter } from "redux/contactSlice/selector";
+import { useDispatch, useSelector } from 'react-redux';
+import { filterContacts } from 'redux/Filter/filterSlice';
+import { fetchContacts } from 'redux/contactSlice/operations';
+import { getContacts, getFilter } from 'redux/contactSlice/selector';
+import { useEffect } from 'react';
+import { Conteiner, H1, Subtitle, Title } from './Phonebook.styled';
+import ContactForm from 'components/ContactForm/ContactForm';
+import ContactList from 'components/Contacts/ContactList/ContactList';
+import Filter from 'components/Filter/Filter';
 
 
 export default function Phonebook() {
@@ -24,10 +29,10 @@ export default function Phonebook() {
     );
 
   return (
-    <Container>
-      <Header>
+    <Conteiner>
+      <H1>
         Phone<Title>book</Title>
-      </Header>
+      </H1>
       <ContactForm contacts={items} />
       <Subtitle>Contacts</Subtitle>
       <Filter filter={filterState} handleChangeFilter={handlChangeFilter} />
@@ -39,6 +44,6 @@ export default function Phonebook() {
         />
       )}
       {error && <p>{error}</p>}
-    </Container>
+    </Conteiner>
   );
 }

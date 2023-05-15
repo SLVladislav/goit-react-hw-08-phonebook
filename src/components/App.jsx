@@ -1,48 +1,53 @@
-import ContactForm from './ContactForm';
-import Filter from './Filter';
-import ContactList from './Contacts/ContactList';
-import { Container, Title, Header, Subtitle } from './App.styled';
 import { useDispatch, useSelector } from 'react-redux';
-import { getContacts, getFilter } from 'redux/contactSlice/selector';
-import { filterContacts } from 'redux/Filter/filterSlice';
 import { useEffect } from 'react';
-import { fetchContacts } from 'redux/contactSlice/operations';
+import { getisRefreshingStatus } from 'redux/auth/auth-selector';
+import { refreshUser } from 'redux/auth/auth-operations';
+import { Routes, Route } from 'react-router-dom';
+import { Layout } from './Layout';
+import HomePage from 'page/HomePage';
+import { RestrictedRoute } from './RegistedRoute';
+import Login from 'page/Login/Login';
+import RegisterPage from 'page/Register/RegisterPage';
+import Phonebook from 'page/Phonebook/PhoneBook';
+import { PrivateRoute } from './PrivateRoute';
+import NotFound from './NotFound/NotFound';
 
 export default function App() {
-  const filterState = useSelector(getFilter);
-  const { items, isLoading, error } = useSelector(getContacts);
-
   const dispatch = useDispatch();
 
+  const isRefreshing = useSelector(getisRefreshingStatus);
+
   useEffect(() => {
-    dispatch(fetchContacts());
+    dispatch(refreshUser());
   }, [dispatch]);
 
-  const handlChangeFilter = e => {
-    dispatch(filterContacts(e.currentTarget.value));
-  };
-
-  const getVisibleContacts = () =>
-    items.filter(({ name }) =>
-      name.toLowerCase().includes(filterState.toLowerCase())
-    );
-
   return (
-    <Container>
-      <Header>
-        Phone<Title>book</Title>
-      </Header>
-      <ContactForm contacts={items} />
-      <Subtitle>Contacts</Subtitle>
-      <Filter filter={filterState} handleChangeFilter={handlChangeFilter} />
-      {isLoading && <p>Loading contacts...</p>}
-      {items.length > 0 && (
-        <ContactList
-          contacts={items.length}
-          visibleContacts={getVisibleContacts()}
-        />
-      )}
-      {error && <p>{error}</p>}
-    </Container>
+    !isRefreshing && (
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index elemnts={<HomePage />} />
+          <Route
+            path="/login"
+            elements={
+              <RestrictedRoute component={Login} redirectTo="/phonebook" />
+            }
+          />
+          <Route
+            path="/register"
+            element={
+              <RestrictedRoute
+                component={RegisterPage}
+                redirectTo="/phonebook"
+              />
+            }
+          />
+          <Route
+            path="/phonebook"
+            element={<PrivateRoute component={Phonebook} redirectTo="/login" />}
+          />
+          <Route path="*" element={<NotFound />} />
+        </Route>
+      </Routes>
+    )
   );
 }

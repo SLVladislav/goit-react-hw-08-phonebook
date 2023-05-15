@@ -1,17 +1,10 @@
 import homeBg from '../images/homeBg.jpg';
-import {
-  ContainerWrapper,
-  Title,
-} from '../components/styles/common/Container.styled';
+import Container from 'components/Container/Container';
 
-function HomePage({ children, title }) {
+function HomePage() {
   return (
     <Container>
       <img src={homeBg} alt="Phone book" />
-      <ContainerWrapper>
-        {title && <Title>{title}</Title>}
-        {children}
-      </ContainerWrapper>
     </Container>
   );
 }
