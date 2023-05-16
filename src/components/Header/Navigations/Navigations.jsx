@@ -12,7 +12,7 @@ function Navigations() {
       </Item>
       {isLoggedIn && (
         <Item>
-          <Link to="/phonebook">Contacts</Link>
+          <Link to="/contacts">Contacts</Link>
         </Item>
       )}
     </List>

@@ -6,16 +6,10 @@ export const Layout = () => {
   return (
     <div>
       <Header position="sticky" />
-      <div
-        style={{
-          marginTop: 64,
-          padding: 16,
-        }}
-      >
-        <Suspense fallback={null}>
-          <Outlet />
-        </Suspense>
-      </div>
+
+      <Suspense fallback={null}>
+        <Outlet />
+      </Suspense>
     </div>
   );
 };
