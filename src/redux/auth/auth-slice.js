@@ -12,8 +12,7 @@ const initialState = {
   error: null,
 };
 
-const handleAuthFulfilled = (state, action) => {
-  console.log(action);
+const handleAuthFulfilled = (state, action) => {  
   state.user = action.payload.user;
   state.token = action.payload.token;
   state.isLoggedIn = true;
