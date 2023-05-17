@@ -25,10 +25,10 @@ export default function App() {
     !isRefreshing && (
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index elemnts={<HomePage />} />
+          <Route index element={<HomePage />} />
           <Route
             path="/login"
-            elements={
+            element={
               <RestrictedRoute component={Login} redirectTo="/phonebook" />
             }
           />

@@ -6,12 +6,12 @@ import { deleteContacts } from 'redux/contactSlice/operations';
 const ContactList = ({ contacts, visibleContacts }) => {
   return contacts ? (
     <ul>
-      {visibleContacts.map(({ id, name, phone }) => {
+      {visibleContacts.map(({ id, name, number }) => {
         return (
           <Item key={id}>
             <Contact
               name={name}
-              phone={phone}
+              number={number}
               deleteContact={deleteContacts(id)}
               id={id}
             />
@@ -30,7 +30,7 @@ ContactList.propTypes = {
     PropTypes.shape({
       id: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
-      phone: PropTypes.string.isRequired,
+      number: PropTypes.string.isRequired,
     }).isRequired
   ).isRequired,
 };

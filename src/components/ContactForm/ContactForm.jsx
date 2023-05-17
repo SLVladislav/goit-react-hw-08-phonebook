@@ -6,7 +6,7 @@ import { addContacts } from 'redux/contactSlice/operations';
 
 export default function ContactForm({ contacts }) {
   const [name, setName] = useState('');
-  const [phone, setPhone] = useState('');
+  const [number, setNumber] = useState('');
 
   const dispatch = useDispatch();
 
@@ -19,7 +19,7 @@ export default function ContactForm({ contacts }) {
 
     isIncludes
       ? alert(`${name} is already in contacts`)
-      : dispatch(addContacts({ name, phone }));
+      : dispatch(addContacts({ name, number }));
 
     reset();
   };
@@ -32,8 +32,8 @@ export default function ContactForm({ contacts }) {
         setName(value);
         break;
 
-      case 'phone':
-        setPhone(value);
+      case 'number':
+        setNumber(value);
         break;
 
       default:
@@ -43,7 +43,7 @@ export default function ContactForm({ contacts }) {
 
   const reset = () => {
     setName('');
-    setPhone('');
+    setNumber('');
   };
 
   return (
@@ -62,14 +62,14 @@ export default function ContactForm({ contacts }) {
       </Label>
 
       <Label>
-        <Title>Phone</Title>
+        <Title>Number</Title>
         <Input
           type="tel"
-          name="phone"
+          name="number"
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           required
-          value={phone}
+          value={number}
           onChange={handleChange}
         />
       </Label>

@@ -4,7 +4,7 @@ import { Icon, Number, Wrapper, Button } from './Contact.styled';
 import { useDispatch } from 'react-redux';
 import { deleteContacts } from 'redux/contactSlice/operations';
 
-const Contact = ({ name, phone, id }) => {
+const Contact = ({ name, number, id }) => {
   const dispatch = useDispatch();
 
   return (
@@ -16,7 +16,7 @@ const Contact = ({ name, phone, id }) => {
         <p>{`${name}`}</p>
       </Wrapper>
       <Wrapper>
-        <Number>{`${phone}`}</Number>
+        <Number>{`${number}`}</Number>
         <Button type="button" onClick={() => dispatch(deleteContacts(id))}>
           <FaTrash />
         </Button>
@@ -27,7 +27,7 @@ const Contact = ({ name, phone, id }) => {
 
 Contact.propTypes = {
   name: PropTypes.string.isRequired,
-  phone: PropTypes.string.isRequired,
+  number: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
 };
 

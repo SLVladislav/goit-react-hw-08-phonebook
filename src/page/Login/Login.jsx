@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { logIn } from 'redux/auth/auth-operations';
+// import { logIn } from 'redux/auth/auth-operations';
 import { Title, Label, TitleInput, Input, Button } from './loginForm.styled';
 import Container from 'components/Container/Container';
 import { Form, ErrorMessage, Formik } from 'formik';
+import { logIn } from 'redux/auth/auth-operations';
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -28,6 +29,7 @@ export default function Login() {
 
   const handleSubmit = e => {
     e.preventDefault();
+    console.log({ email, password });
 
     dispatch(logIn({ email, password }));
   };

@@ -1,7 +1,8 @@
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import { logIn, logOut, refreshUser, register } from './auth-operations';
+// import { logIn, logOut, refreshUser, register } from './auth-operations';
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
+import { register, logIn, logOut, refreshUser } from './auth-operations';
 
 const initialState = {
   user: { name: null, email: null },
@@ -12,6 +13,7 @@ const initialState = {
 };
 
 const handleAuthFulfilled = (state, action) => {
+  console.log(action);
   state.user = action.payload.user;
   state.token = action.payload.token;
   state.isLoggedIn = true;
